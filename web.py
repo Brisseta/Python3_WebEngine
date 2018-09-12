@@ -3,6 +3,7 @@ from requests import get
 from bs4 import BeautifulSoup
 from sys import argv, exit
 from page import WebPage
+from engine import WebSearchengine
 
 
 def extract_description(soup_object):
@@ -38,7 +39,8 @@ for url in file :
     description = download(url)
     if description is not None:
        webPage = WebPage(url, description)
-       webPage.print_info()
+       engine = WebSearchengine(webPage)
+       engine.print_info_page(webPage)
 
     else:
         print("No description foud pour ", url)
